@@ -54,10 +54,15 @@
                 else{
                     theColor = 'black';
                 }
-                this.setState((state,props) => ({
+
+                // this.setState((state,props) => ({
+                //     count: aCount,
+                //     countStyle: {color : theColor}
+                // }))
+                this.setState({
                     count: aCount,
-                    countStyle: {color : theColor}
-                }))
+                    countStyle: {color: theColor}
+                });
             }
 
             incrementHandler = (event) => {
@@ -75,11 +80,16 @@
                     theColor = 'black';
                 }
 
-                this.setState((state,props) => ({
+                // this.setState((state,props) => ({
+                //         count: aCount,
+                //         countStyle: {color : theColor},
+                //         resetStyle : {}
+                // }) )
+                this.setState({
                         count: aCount,
                         countStyle: {color : theColor},
                         resetStyle : {}
-                }) )
+                })
 
             }
 
@@ -98,11 +108,16 @@
                     theColor = 'black';
                 }
 
-                this.setState((state,props) => ({
+                // this.setState((state,props) => ({
+                //     count: aCount,
+                //     countStyle: {color : theColor},
+                //     resetStyle : {}
+                // }) )
+                this.setState({
                     count: aCount,
                     countStyle: {color : theColor},
                     resetStyle : {}
-                }) )
+                });
 
             }
             
@@ -114,9 +129,8 @@
                         <button onClick={this.incrementHandler}>increase (+)</button>
                         <button onClick={this.decrementHandler}>decrement (-)</button>
                         <button style={this.state.resetStyle} onClick={this.reset}>reset</button>
-                    </div>
-                    
-                )
+                    </div>  
+                );
             }
 
         }
