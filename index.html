@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- element for the root -->
+    <div id="root"></div>
+
+    <!--React-->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" ></script>
+    <!--React Dom-->
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" ></script>
+    <!--Babel-->
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Counter extends React.Component{
+            constructor(props){
+                super(props);
+                
+                let startCount = 0;
+                let startColor = 'black'
+                
+                if(props.startingValue){
+                    startCount = props.startingValue;
+                    if(startCount > 10){
+                        startColor = 'red';
+                    }
+                    else{
+                        startColor = 'black';
+                    }
+                }
+                
+                this.state = {
+                    countStyle : {color : startColor},
+                    resetStyle : {display : 'none'},
+                    count : startCount,
+                    initialCount : startCount
+                }
+            }
+
+            reset = (event) => {
+                
+                let aCount = this.state.initialCount;
+                let theColor = '';
+                
+                if(aCount > 10){
+                    theColor = 'red';
+                }
+                else{
+                    theColor = 'black';
+                }
+                this.setState((state,props) => ({
+                    count: aCount,
+                    countStyle: {color : theColor}
+                }))
+            }
+
+            incrementHandler = (event) => {
+
+                let aCount = this.state.count;
+                let theColor = '';
+                
+                if(aCount < 20){
+                    aCount = aCount + 1;
+                }
+                if(aCount > 10){
+                    theColor = 'red';
+                }
+                else{
+                    theColor = 'black';
+                }
+
+                this.setState((state,props) => ({
+                        count: aCount,
+                        countStyle: {color : theColor},
+                        resetStyle : {}
+                }) )
+
+            }
+
+            decrementHandler = (event) => {
+
+                let aCount = this.state.count;
+                let theColor = '';
+                
+                if(aCount > 0){
+                    aCount = aCount - 1;
+                }
+                if(aCount > 10){
+                    theColor = 'red';
+                }
+                else{
+                    theColor = 'black';
+                }
+
+                this.setState((state,props) => ({
+                    count: aCount,
+                    countStyle: {color : theColor},
+                    resetStyle : {}
+                }) )
+
+            }
+            
+
+            render(){
+                return(
+                    <div >
+                        <div style={ this.state.countStyle } >{this.state.count}</div>
+                        <button onClick={this.incrementHandler}>increase (+)</button>
+                        <button onClick={this.decrementHandler}>decrement (-)</button>
+                        <button style={this.state.resetStyle} onClick={this.reset}>reset</button>
+                    </div>
+                    
+                )
+            }
+
+        }
+
+        ReactDOM.render(
+            // <Counter startingValue={15} />,
+            <Counter />,
+            document.getElementById('root')
+
+        );
+
+        
+        
+    
+            
+
+    </script>
+
+</body>
+</html>
